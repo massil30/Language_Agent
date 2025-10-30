@@ -1,19 +1,18 @@
 from langchain_community.llms import OpenAI
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
 
-# Initialize the LLM (you can replace with ChatOpenAI if you use GPT-4)
-llm = OpenAI(model="gpt-3.5-turbo", temperature=0.7)
+from dotenv import load_dotenv
+load_dotenv()
 
-# Create a simple prompt
-prompt = PromptTemplate(
-    input_variables=[],
-    template="Écris trois phrases simples en français."
-)
+from openai import OpenAI
 
-# Create the chain
-chain = LLMChain(llm=llm, prompt=prompt)
+import google.generativeai as genai
 
-# Run the chain
-response = chain.run()
-print(response)
+# Set your API key
+genai.configure(api_key="YOUR_GEMINI_API_KEY")
+
+# Load a Gemini model
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+# Generate text
+response = model.generate_content("Write 3 sentences in French about Paris.")
+print(response.text)
