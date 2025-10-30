@@ -1,18 +1,29 @@
 from langchain_community.llms import OpenAI
+import os
+from print import info, error, success
 
 from dotenv import load_dotenv
-load_dotenv()
 
-from openai import OpenAI
+#from openai import OpenAI
 
 import google.generativeai as genai
+load_dotenv()
+# Configure Gemini with API key from .env file
+genai.configure(api_key='-QY')
+info("-----------  Loading  ------------")
+model = genai.GenerativeModel("models/gemini-2.5-flash")
 
-# Set your API key
-genai.configure(api_key="YOUR_GEMINI_API_KEY")
+prompt = "Écris trois phrases en français sur Paris"
 
-# Load a Gemini model
-model = genai.GenerativeModel("gemini-1.5-flash")
+    
 
-# Generate text
-response = model.generate_content("Write 3 sentences in French about Paris.")
-print(response.text)
+try:
+    error("test error message")
+
+    tokens_info = model.count_tokens(prompt)
+    info(f"Estimated input tokens: {tokens_info.total_tokens}")
+except Exception as e:
+    error(f"count_tokens not supported: {e}")
+
+response = model.generate_content(prompt)
+success(f"Output:\n{response.text}")
