@@ -1,0 +1,5 @@
+# 3 formelle + 3 Informelle
+# Number of Availaible tokens Vs Used Tokens
+# Print in Colors
+# Handle Errors
+# Test Bash
