@@ -1,5 +1,45 @@
-# 3 formelle + 3 Informelle
-# Number of Availaible tokens Vs Used Tokens
-# Print in Colors
-# Handle Errors
-# Test Batch
+
+//  
+Metrices to evalute user consumption of LLM (https://chatgpt.com/c/6903e96d-d62c-832a-9962-cbecfff128ff)
+
+// Optimize 
+https://medium.com/@suzanne.chan/how-i-handled-token-limitation-in-my-first-ai-project-with-openai-efe825133e67
+Ai has token limit memory
+1500 Word = 20487 tokes
+RecursiveCharacterTextSplitter (Split into chunks)
+Chroma.from_documents() (Convet Chunks into VECTORS / Chroma store embedding Vectores 
+	enable fast similarity Researches)
+https://medium.com/@sauliusaulys/llm-prompt-optimization-reducing-tokens-usage-343f5de178a5
+	- Minified Json (No Space, No line breasks)
+		- {"name":"Algiers","country":"Algeria","activities":["hiking","museum","sightseeing"]}
+	- Custom using # and 
+	- Caching reduce Cost with 75%
+	- Error 
+		-  What went wrong ? / What's needed
+	- Yolo MCP rools definition
+	- Output (They are expensive)
+		- Limite response length.
+		= Set max tokens.
+	- Batch Api for background jobs.
+	- Open Ai documentation.
+	- Stop Sequence (Ability to stop output generation)
+	- tiktoken library ows enterprises to track tokens without relying solely on API calls.(Open Ai Models))
+	- Use smaller mode.
+	- I can track Consumption using Google Ai or Open Ai Dashboards.
+		- https://aistudio.google.com/app/usage?project=gen-lang-client-0069623234&timeRange=last-28-days
+https://medium.com/ai-ml-and-beyond/building-powerful-ai-agents-with-langchain-and-langgraph-part-1-14991766f18a
+	- Guiding LLM Response :
+		- Prompt template : Language Input / Output
+	- Memory:
+		- ConversationBufferMemory: Stores full conversation history.
+		- ConversationSummaryMemory: Stores conversation summaries. 
+		- VectorStoreMemory: Uses embeddings for memory storage.
+	- LLM Workflow :
+		- SequentialChain: Runs multiple chains in sequence.
+		- RouterChain: Dynamically selects which chain to use based on input.
+	- External Tools :
+		- Web search tools: Search the internet for information
+		- Calculator tools: Perform mathematical calculations
+		- API tools: Access external APIs and services 
+		
+https://platform.openai.com/docs/guides/batch (Chat Gpt Documenation)
